@@ -10,7 +10,7 @@ import {useSelector} from 'react-redux'
 export function WraperApp(){
     const usuarioLogeado = useSelector((state) => state);
     console.log('el valor de usuario es ')
-    console.log(usuarioLogeado)
+    console.log(usuarioLogeado.usuario)
     return (
         <div>
             <Router>
@@ -19,9 +19,9 @@ export function WraperApp(){
               <Route path='/subirContenido' component={SubirContenido} />
               <Route path='/login' component={Login} />
               {
-                (usuarioLogeado.id===0)?(null)
+                (usuarioLogeado.usuario.id===0)?(null)
                 :(
-                  <Route path='/panelControl' component={PanelAdmin} />
+                    <Route path='/panelControl' component={PanelAdmin} />
                 )
               }
 

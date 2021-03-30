@@ -21,6 +21,13 @@ function reducer(state,{type,payload}){
             ...state,
             usuario:payload
         }
+        case 'CIERRA_SESION':return {
+            ...state,
+            usuario:{
+                id:0,
+                nombreUsuario:'no logeado'
+            }
+        }
         
         default:
             return state; 
@@ -31,5 +38,12 @@ export const IniciarSesion=(usuario)=>(
     {
         type:'INICIA_SESION',
         payload:usuario
+    }
+)
+
+export const CerrarSesion=()=>(
+    {
+        type:'CIERRA_SESION',
+        payload:null
     }
 )
