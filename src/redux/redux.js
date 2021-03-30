@@ -1,19 +1,14 @@
 import {createStore} from 'redux';
 
-const initialState={
-    todos:[
+const initialState=
         {
-            id:1,
-            name:'go to gym',
-            complete:false
-        },{
-            id:2,
-            name:'do laundry',
-            complete:true
-        },
+            usuario:{
+                id:0,
+                nombreUsuario:'no logeado'
+            },
+            
+        }
 
-    ]
-}
 
 export const store=createStore(
     reducer,
@@ -22,42 +17,19 @@ export const store=createStore(
 
 function reducer(state,{type,payload}){
     switch(type){
-        case 'ADD_TODO':return {
+        case 'INICIA_SESION':return {
             ...state,
-            todos:[...state.todos,payload]
+            usuario:payload
         }
-        case 'TOGGLE_TODO':
-            return {
-                ...state,
-                todos:state.todos.map(todo=>(todo.id===payload)?{...todo,complete:!todo.complete}:todo)
-            }
-        case 'DELETE_TODO':
-            return {
-                ...state,
-                todos: state.todos.filter(todo=>todo.id!==payload)
-            }
+        
         default:
             return state; 
     }
 }
 
-export const addTodoAction=(todo)=>(
+export const IniciarSesion=(usuario)=>(
     {
-        type:'ADD_TODO',
-        payload:todo
-    }
-)
-
-export const toggleTodoAction = todoid =>(
-    {
-        type:'TOGGLE_TODO',
-        payload:todoid
-    }
-)
-
-export const deleteTodoAction=todoid=>(
-    {
-        type:'DELETE_TODO',
-        payload:todoid
+        type:'INICIA_SESION',
+        payload:usuario
     }
 )

@@ -1,12 +1,12 @@
 import {GetUrlApi} from '../Globales/FuncionesGlobales'
 import {useHistory} from 'react-router-dom'
 import {useDispatch} from 'react-redux'; 
-import{addTodoAction} from '../../redux/redux';
+import{IniciarSesion} from '../../redux/redux';
 
 export function Login(){
     const history = useHistory()
     const dispatch = useDispatch();
-    const addTodo = (todo) => dispatch(addTodoAction(todo))
+    const registrarLogin = (user) => dispatch(IniciarSesion(user))
 
     const Logear =async ()=>{
         var data = {}
@@ -29,11 +29,8 @@ export function Login(){
         });
 
         if (respuesta.ok) {
-            addTodo({
-                id:690,
-                name:'jalarla',
-                complete:false
-            });
+            const user = await respuesta.json()
+            registrarLogin(user);
             history.push('/panelControl')
         }
 
@@ -58,7 +55,7 @@ export function Login(){
                     </center>
                     
                 </div>
-                <a onClick={()=>{addTodo({})}} className="waves-effect waves-light btn">agregar</a>
+                <a onClick={()=>{Logear({})}} className="waves-effect waves-light btn">agregar</a>
                 <div class="col s4"></div>
             </div>
 
@@ -66,36 +63,3 @@ export function Login(){
     )
 }
 
-async function Logear(redirect){
-
-    const dispatch = useDispatch();
-    const addTodo = (todo) => dispatch(addTodoAction(todo))
-
-    var data = {}
-    data.nombreUsuario = document.getElementById('nombreUsuario').value
-    data.password = document.getElementById('password').value
-
-    var respuesta = await fetch(GetUrlApi()+'/api/Usuarios/Login', {
-        headers:{
-            'Content-Type': 'application/json'
-        },
-        method: 'post',
-        body:JSON.stringify(data)
-    }).catch((err)=>{
-        console.log(err);
-        alert('error')
-        //swal({
-        //    title: "Error al guardar el cierre" ,
-        //    icon: "error"
-        //})
-    });
-    if (respuesta.ok) {
-        addTodo({
-            id:69,
-            name:'jalarmela',
-            complete:false
-        });
-        redirect.push('/panelControl')
-    }
-
-}
