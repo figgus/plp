@@ -2,6 +2,7 @@ import {GetUrlApi} from '../Globales/FuncionesGlobales'
 import {useHistory} from 'react-router-dom'
 import {useDispatch} from 'react-redux'; 
 import{IniciarSesion} from '../../redux/redux';
+import swal from 'sweetalert'
 
 export function Login(){
     const history = useHistory()
@@ -20,12 +21,10 @@ export function Login(){
             method: 'post',
             body:JSON.stringify(data)
         }).catch((err)=>{
-            console.log(err);
-            alert('error')
-            //swal({
-            //    title: "Error al guardar el cierre" ,
-            //    icon: "error"
-            //})
+            swal({
+                title: "Error al guardar el cierre" ,
+                icon: "error"
+            })
         });
 
         if (respuesta.ok) {

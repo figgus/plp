@@ -3,6 +3,8 @@ import {useSelector,useDispatch} from 'react-redux';
 //import {toggleTodoAction,deleteTodoAction} from '../../redux/redux';
 import { GetUrlApi } from "../Globales/FuncionesGlobales";
 import { ModalZoomImagen } from "./ModalZoomImagen";
+import swal from 'sweetalert'
+
 
 export function PanelAdmin(){
 
@@ -65,9 +67,8 @@ export function PanelAdmin(){
                                 {item.descripcion}
                             </td>
                             <td>
-                            <a classNames="waves-effect waves-light btn modal-trigger" href="#modal1">Modal</a>
-                                <i className="material-icons">zoom_in</i>
-                                <i className="material-icons">check</i>
+                                <i onClick={()=>{Aprovar(item.id)}} className="material-icons">check</i>
+                                <i className="material-icons">cancel</i>
                             </td>
                         </tr>
                         )
@@ -80,4 +81,36 @@ export function PanelAdmin(){
                 <ModalZoomImagen />
         </div>
     )
+}
+
+
+export async function Aprovar(id){
+
+    swal({
+        title: "¿Esta seguro que desea aprovar esta imagen?",
+        text:"Si confirma esta imagen será publicada",
+        icon: "warning",
+        buttons: true,
+        dangerMode: true,
+    }).then(async(aprovar) => {
+            if (aprovar) {
+                var respuesta = await fetch(GetUrlApi()+'/api/Contenidos/AprovarContenido?id='+id, {
+                    headers:{
+                        'Content-Type': 'application/json'
+                    },
+                    method: 'put'
+                  }).catch((err)=>{
+                      swal({
+                          title: "Error al aprobar" ,
+                          icon: "error"
+                      })
+                  });
+                  if (respuesta.ok){
+                    swal({
+                        title: "Imagen publicada" ,
+                        icon: "success"
+                    })
+                  }
+            } 
+        });
 }
