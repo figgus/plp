@@ -39,7 +39,9 @@ export function Login(){
     return (
         <div >
             <div class="row">
-                <div class="col s4"></div>
+                <div class="col s4">
+                    
+                </div>
                 <div class="col s4">
                     <h5>Ingrese datos</h5>
                     <br/>
@@ -55,7 +57,6 @@ export function Login(){
                     </center>
                     
                 </div>
-                <a onClick={()=>{Logear({})}} className="waves-effect waves-light btn">agregar</a>
                 <div class="col s4"></div>
             </div>
 
