@@ -1,4 +1,4 @@
-import {GetUrlApi} from '../Globales/FuncionesGlobales'
+import {GetUrlApi,getCookie,setCookie} from '../Globales/FuncionesGlobales'
 import {useHistory} from 'react-router-dom'
 import {useDispatch} from 'react-redux'; 
 import{IniciarSesion} from '../../redux/redux';
@@ -6,7 +6,7 @@ import swal from 'sweetalert'
 
 export function Login(){
     const history = useHistory()
-    const dispatch = useDispatch();
+    const dispatch = useDispatch()
     const registrarLogin = (user) => dispatch(IniciarSesion(user))
 
     const Logear =async ()=>{
@@ -29,10 +29,11 @@ export function Login(){
 
         if (respuesta.ok) {
             const user = await respuesta.json()
-            registrarLogin(user);
+            registrarLogin(user)
+            debugger
+            setCookie('nombreUsuario',user.nombreUsuario)
             history.push('/panelControl')
         }
-
     }
 
     return (

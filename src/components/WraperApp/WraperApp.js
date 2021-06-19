@@ -4,13 +4,31 @@ import {SubirContenido} from '../SubirContenido/SubirContenido'
 import {BrowserRouter as Router,Route} from "react-router-dom";
 import {Login} from '../Login/Login'
 import {PanelAdmin} from '../PanelAdmin/PanelAdmin'
-import {useSelector} from 'react-redux'
-
+import {useSelector,useDispatch} from 'react-redux'
+import {IniciarSesion} from '../../redux/redux'
+import {getCookie} from '../Globales/FuncionesGlobales'
+import { useEffect } from 'react';
 
 export function WraperApp(){
     const usuarioLogeado = useSelector((state) => state);
-    console.log('el valor de usuario es ')
-    console.log(usuarioLogeado.usuario)
+    const dispatch = useDispatch()
+    
+    const nombreDeUsuario = getCookie('nombreUsuario')
+
+    useEffect(()=>{
+      debugger
+      
+      if(nombreDeUsuario !== 'no logeado'){
+
+        const user = {
+          id:0,
+          nombreUsuario:nombreDeUsuario
+        }
+        const registrarLogin = (user) => dispatch(IniciarSesion(user))
+        registrarLogin(user)
+      }
+    },[])
+    
     return (
         <div>
             <Router>
@@ -19,7 +37,7 @@ export function WraperApp(){
               <Route path='/subirContenido' component={SubirContenido} />
               <Route path='/login' component={Login} />
               {
-                (usuarioLogeado.usuario.id===0)?(null)
+                (nombreDeUsuario===null)?(null)
                 :(
                     <Route path='/panelControl' component={PanelAdmin} />
                 )
