@@ -1,8 +1,10 @@
 import React,{useEffect,useState} from 'react'
+import { useHistory } from 'react-router-dom';
 import {GetUrlApi} from '../Globales/FuncionesGlobales'
 
 export function GaleriaImagenes(){
-  const [imagenes,setImagenes] = useState([]);
+  const [imagenes,setImagenes] = useState([])
+  const history = useHistory()
 
   useEffect(async()=>{
     var respuesta = await fetch(GetUrlApi()+'/api/Contenidos/GetContenidoAprovado', {
@@ -11,7 +13,6 @@ export function GaleriaImagenes(){
       },
       method: 'get'
     }).catch((err)=>{
-        console.log(err);
         alert('error')
         //swal({
         //    title: "Error al guardar el cierre" ,
@@ -21,9 +22,17 @@ export function GaleriaImagenes(){
     if (respuesta.ok){
       const res = await respuesta.json()
       setImagenes(res)
-      console.log(res)
     }
   },[])
+
+  const ClickComentarios = (indiceImagen)=>{
+    const id_imagen_seleccionada = imagenes[indiceImagen].id
+    localStorage.setItem('id_imagen_seleccionada',id_imagen_seleccionada)
+    localStorage.setItem('url_imagen',imagenes[indiceImagen].urlFile)
+    localStorage.setItem('titulo',imagenes[indiceImagen].titulo)
+
+    history.push("/Comentarios")
+  }
   
 
 
@@ -44,7 +53,7 @@ export function GaleriaImagenes(){
                 </div>
                 <div class="card-action">
                   <a href="#">Like</a>
-                  <a href="#">Comentarios</a>
+                  <a onClick={()=>{ClickComentarios(index)}} href="javascript:void(0)">Comentarios</a>
                 </div>
               </div>
               </div>

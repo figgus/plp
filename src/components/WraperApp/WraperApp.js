@@ -1,25 +1,22 @@
 import {Navbar} from '../Navbar'
 import {GaleriaImagenes} from '../GaleriaImagenes/GaleriaImagenes'
 import {SubirContenido} from '../SubirContenido/SubirContenido'
+import {Comentarios} from '../Comentarios/Comentarios'
 import {BrowserRouter as Router,Route} from "react-router-dom";
 import {Login} from '../Login/Login'
 import {PanelAdmin} from '../PanelAdmin/PanelAdmin'
-import {useSelector,useDispatch} from 'react-redux'
+import {useDispatch} from 'react-redux'
 import {IniciarSesion} from '../../redux/redux'
 import {getCookie} from '../Globales/FuncionesGlobales'
 import { useEffect } from 'react';
 
 export function WraperApp(){
-    const usuarioLogeado = useSelector((state) => state);
     const dispatch = useDispatch()
     
     const nombreDeUsuario = getCookie('nombreUsuario')
 
     useEffect(()=>{
-      debugger
-      
       if(nombreDeUsuario !== 'no logeado'){
-
         const user = {
           id:0,
           nombreUsuario:nombreDeUsuario
@@ -42,6 +39,7 @@ export function WraperApp(){
                     <Route path='/panelControl' component={PanelAdmin} />
                 )
               }
+              <Route path='/Comentarios' component={Comentarios} />
 
             </Router>
         </div>
