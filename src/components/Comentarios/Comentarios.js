@@ -5,10 +5,33 @@ import {ComentariosPrevios} from '../Comentarios/ComentariosPrevios'
 export function Comentarios(){
     const titulo = localStorage.getItem('titulo')
     const url = localStorage.getItem('url_imagen')
-    const idImagen = localStorage.getItem('id_imagen_seleccionada')
-
+    const [mostrarComentarios,setMostrarComentarios] = useState(true)
     
+    const CrearComentario = async ()=>{
+        setMostrarComentarios(false)
+        var body = {}
+        body.texto = document.getElementById('txtTexto').value
+        body.visible = true
+        body.contenidoID =Number(localStorage.getItem('id_imagen_seleccionada'))
 
+        var respuesta = await fetch(GetUrlApi()+'/api/Comentarios/', {
+            headers:{
+                'Content-Type': 'application/json'
+            },
+            method: 'post',
+            body: JSON.stringify(body)
+          }).catch((err)=>{
+              alert('error')
+              //swal({
+              //    title: "Error al guardar el cierre" ,
+              //    icon: "error"
+              //})
+          })
+          if (respuesta.ok){
+            setMostrarComentarios(true)
+            document.getElementById('txtTexto').value = ''
+          }
+    }
 
     return (
         <div  className="container">
@@ -30,40 +53,14 @@ export function Comentarios(){
                             </center>
                         </p>
                     </div>
-                        <ComentariosPrevios />
+                    {
+                        (mostrarComentarios)?(<ComentariosPrevios />):(null)
+                    }
+                        
                       
                   </div>
                 </div>
             </div>
         </div>
     )
-}
-
-async function  CrearComentario(){
-    var body = {}
-    body.texto = document.getElementById('txtTexto').value
-    body.visible = true
-    body.contenidoID =Number(localStorage.getItem('id_imagen_seleccionada'))
-
-    //body.fechaCreacion = new Date()
-    //body.fechaModificacion = new Date()
-    //console.log(JSON.stringify(body))
-
-    debugger
-    var respuesta = await fetch(GetUrlApi()+'/api/Comentarios/', {
-        headers:{
-            'Content-Type': 'application/json'
-        },
-        method: 'post',
-        body: JSON.stringify(body)
-      }).catch((err)=>{
-          alert('error')
-          //swal({
-          //    title: "Error al guardar el cierre" ,
-          //    icon: "error"
-          //})
-      })
-      if (respuesta.ok){
-        alert('comentado!!')
-      }
 }
