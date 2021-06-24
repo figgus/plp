@@ -27,15 +27,25 @@ export function ComentariosPrevios(){
         },[]
     )
 
+    
 
     return <div className="card-action">
+        
+        <ul class="collection">
         {
             comentarios.map((item, i)=>{
-                return (<p>
-                    {item.texto}
-                </p>)
+                return (
+                    <li class="collection-item avatar">
+                        <img src="images/yuna.jpg" alt="" class="circle"/>
+                        <span class="title">Anonimo - publicado el {new Date(item.fechaCreacion).toLocaleDateString()} a las {new Date(item.fechaCreacion).getHours()}:{new Date(item.fechaCreacion).getMinutes()}</span>
+                        <p>  <br/>
+                           {item.texto}
+                        </p>
+                    </li>
+                )
             })
         }
+        </ul>
     </div>
 }
 

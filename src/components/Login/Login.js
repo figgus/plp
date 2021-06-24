@@ -1,7 +1,7 @@
 import {GetUrlApi,getCookie,setCookie} from '../Globales/FuncionesGlobales'
 import {useHistory} from 'react-router-dom'
 import {useDispatch} from 'react-redux'; 
-import{IniciarSesion} from '../../redux/redux';
+import{CerrarSesion, IniciarSesion} from '../../redux/redux';
 import swal from 'sweetalert'
 
 export function Login(){
@@ -30,37 +30,49 @@ export function Login(){
         if (respuesta.ok) {
             const user = await respuesta.json()
             registrarLogin(user)
-            debugger
             setCookie('nombreUsuario',user.nombreUsuario)
+            setCookie('idUsuario',user.id)
+
             history.push('/panelControl')
+            CerrarSesion()
         }
     }
 
     return (
         <div >
-            <div class="row">
-                <div class="col s4">
-                    
-                </div>
-                <div class="col s4">
-                    <h5>Ingrese datos</h5>
-                    <br/>
-                    <label>Nombre de usuario</label>
-                    <input id="nombreUsuario" type="text" class="validate"/>
+            <div className="modal" id="modalLogin">
+                <div class="modal-content"> 
+                    <div className="row">
+                        <div className="col s4"></div>
+                        <div className="col s4">
+                            <h5 style={{color:'black'}}>Ingrese datos</h5>
+                            
+                            <input placeholder="Nombre de usuario" id="nombreUsuario" type="text" className="validate"/>
 
-                    <label >Password</label>
-                    <input id="password" type="password" class="validate"/>
-                    
-                    <br/>
-                    <center>
-                        <a onClick={()=>{Logear()}} className="waves-effect waves-light btn">Ingresar</a>
-                    </center>
-                    
+                            <input placeholder="Contraseña" id="password" type="password" className="validate"/>
+
+                            <p>
+                                <label>
+                                  <input type="checkbox" className="filled-in"  />
+                                  <span>Recordar</span>
+                                </label>
+                            </p>
+                            <center>
+                                <a onClick={()=>{Logear()}} className="waves-effect waves-light btn">Ingresar</a>
+                            </center>
+                        </div>
+                        <div className="col s4"></div>
+                    </div>
                 </div>
-                <div class="col s4"></div>
             </div>
-
         </div>
     )
 }
 
+
+function CerrarModalLogin(){
+    const M = window.M
+    const elem = document.getElementById('modalLogin')
+    var instance = M.Modal.getInstance(elem);
+    instance.close()
+}

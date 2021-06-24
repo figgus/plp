@@ -32,7 +32,6 @@ export function WraperApp(){
               <Navbar />
               <Route exact path='/' component={GaleriaImagenes} />
               <Route path='/subirContenido' component={SubirContenido} />
-              <Route path='/login' component={Login} />
               {
                 (nombreDeUsuario===null)?(null)
                 :(
