@@ -5,9 +5,10 @@ import {Comentarios} from '../Comentarios/Comentarios'
 import {BrowserRouter as Router,Route} from "react-router-dom";
 import {Login} from '../Login/Login'
 import {PanelAdmin} from '../PanelAdmin/PanelAdmin'
+import {MainUsuario} from '../posteos/MainUsuario'
 import {useDispatch} from 'react-redux'
 import {IniciarSesion} from '../../redux/redux'
-import {getCookie} from '../Globales/FuncionesGlobales'
+import {getCookie,GetNombreDefault} from '../Globales/FuncionesGlobales'
 import { useEffect } from 'react';
 
 export function WraperApp(){
@@ -16,9 +17,9 @@ export function WraperApp(){
     const nombreDeUsuario = getCookie('nombreUsuario')
 
     useEffect(()=>{
-      if(nombreDeUsuario !== 'no logeado'){
+      if(nombreDeUsuario !== GetNombreDefault()){
         const user = {
-          id:0,
+          id:getCookie('idUsuario'),
           nombreUsuario:nombreDeUsuario
         }
         const registrarLogin = (user) => dispatch(IniciarSesion(user))
@@ -39,6 +40,7 @@ export function WraperApp(){
                 )
               }
               <Route path='/Comentarios' component={Comentarios} />
+              <Route path='/Inicio' component={MainUsuario} />
 
             </Router>
         </div>

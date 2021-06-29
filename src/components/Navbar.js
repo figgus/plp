@@ -3,7 +3,6 @@ import { Link ,BrowserRouter,NavLink} from 'react-router-dom'
 import {useSelector,useDispatch} from 'react-redux';
 import {CerrarSesion} from '../redux/redux';
 import {useHistory} from 'react-router-dom'
-import {getCookie,setCookie,GetNombreDefault} from './Globales/FuncionesGlobales'
 import {Login} from './Login/Login'
 
 export function Navbar(){
@@ -13,19 +12,19 @@ export function Navbar(){
     const dispatch = useDispatch();
     const salir = (user) => dispatch(CerrarSesion())
 
-    const idUsuario = getCookie('idUsuario')
-    console.log(usuario.id)
     const salirSesion = ()=>{
         salir()
         localStorage.removeItem('nombreUsuario')
         document.cookie = "nombreUsuario = John Doe; expires=Thu, 18 Dec 2013 12:00:00 UTC"; 
         document.cookie = "idUsuario = John Doe; expires=Thu, 18 Dec 2013 12:00:00 UTC"; 
+        document.cookie = "jwt = John Doe; expires=Thu, 18 Dec 2013 12:00:00 UTC"; 
+
         history.push('/')
     }
 
     useEffect(()=>{
         const M = window.M
-        var elems = document.querySelectorAll('.modal');
+        var elems = document.getElementById('modalLogin');
         M.Modal.init(elems, {});
     },[])
 
@@ -38,6 +37,9 @@ export function Navbar(){
                     <li>
                         <Link to="/subirContenido"> Subir contenido </Link>
                     </li>
+                    <li>
+                        <Link to="/Inicio"> Posteorama </Link>
+                    </li>
                     {
                         (Number(usuario.id)!==0 )?(
                             <React.Fragment>
@@ -46,7 +48,6 @@ export function Navbar(){
                                 </li>
                                 <li>
                                     <Link onClick={()=>{salirSesion()}}>Cerrar sesión</Link>
-                                    
                                 </li>
                             </React.Fragment>
                         ):(
@@ -56,7 +57,9 @@ export function Navbar(){
                             
                         )
                     }
-                    
+                    <li>
+                                <Link onClick={()=>{AbrirModalLogin()}}>Iniciar sesión</Link>
+                            </li>
                 </ul>
             </div>
             <Login />

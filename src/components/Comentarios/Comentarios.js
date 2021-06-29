@@ -19,6 +19,7 @@ export function Comentarios(){
                 'Content-Type': 'application/json'
             },
             method: 'post',
+            credentials: 'include',
             body: JSON.stringify(body)
           }).catch((err)=>{
               alert('error')
