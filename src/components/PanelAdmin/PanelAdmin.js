@@ -26,7 +26,8 @@ export function PanelAdmin(){
             headers:{
                 'Content-Type': 'application/json'
             },
-            method: 'get'
+            method: 'get',
+            credentials: 'include'
           }).catch((err)=>{
               console.log(err);
               alert('error')

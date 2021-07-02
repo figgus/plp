@@ -26,16 +26,6 @@ export function setCookie(cname, cvalue, exdays) {
     document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
 }
 
-export function setCookieHttpOnly(cname, cvalue, exdays) {
-  var d = new Date();
-  d.setTime(d.getTime() + (exdays*24*60*60*1000));
-  var expires = "expires="+ d.toUTCString();
-  debugger
-  const script = cname + "=" + cvalue + ";" + expires + ";path=/;HttpOnly;Secure;"
-  console.log(script)
-  alert('funciona')
-  document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/;HttpOnly;Secure;";
-}
 
 export function GetNombreDefault(){
   return 'no logeado'

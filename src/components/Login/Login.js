@@ -1,11 +1,10 @@
-import {GetUrlApi,getCookie,setCookie,setCookieHttpOnly} from '../Globales/FuncionesGlobales'
+import {GetUrlApi,setCookie} from '../Globales/FuncionesGlobales'
 import {useHistory} from 'react-router-dom'
 import {useDispatch} from 'react-redux'; 
 import{CerrarSesion, IniciarSesion} from '../../redux/redux';
 import swal from 'sweetalert'
 import {RegistroUsuario} from '../Login/RegistroUsuario'
 import React, { useState } from 'react'
-import Cookies from 'universal-cookie/es6';
 
 export function Login(){
     const history = useHistory()
@@ -36,12 +35,9 @@ export function Login(){
             const user = await respuesta.json()
             registrarLogin(user)
             const isRecordar = document.getElementById('chkRecordar').checked
-            debugger
             if(isRecordar){
                 setCookie('nombreUsuario',user.nombreUsuario)
                 setCookie('idUsuario',user.id)
-                
-                setCookieHttpOnly('token',69,1)
             }
             
 
