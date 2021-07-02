@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import { Link ,BrowserRouter,NavLink} from 'react-router-dom'
 import {useSelector,useDispatch} from 'react-redux';
-import {CerrarSesion} from '../redux/redux';
+import {CerrarSesion} from '../../redux/redux';
 import {useHistory} from 'react-router-dom'
-import {Login} from './Login/Login'
-import {GetUrlApi} from './Globales/FuncionesGlobales'
+import {Login} from '../Login/Login'
+import {GetUrlApi} from '../Globales/FuncionesGlobales'
 
 
 

@@ -1,4 +1,4 @@
-import {Navbar} from '../Navbar'
+import {Navbar} from '../Navbar/Navbar'
 import {GaleriaImagenes} from '../GaleriaImagenes/GaleriaImagenes'
 import {SubirContenido} from '../SubirContenido/SubirContenido'
 import {Comentarios} from '../Comentarios/Comentarios'
