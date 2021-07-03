@@ -17,7 +17,7 @@ export function Navbar(){
 
     const salirSesion = async()=>{
         salir()
-        localStorage.removeItem('nombreUsuario')
+        //localStorage.removeItem('nombreUsuario')
         document.cookie = "nombreUsuario = John Doe; expires=Thu, 18 Dec 2013 12:00:00 UTC"; 
         document.cookie = "idUsuario = John Doe; expires=Thu, 18 Dec 2013 12:00:00 UTC"; 
 
@@ -39,14 +39,11 @@ export function Navbar(){
 
     useEffect(()=>{
         const M = window.M
-        var elems = document.getElementById('modalLogin');
-        M.Modal.init(elems, {});
-        console.log(M)
-        var elems1 = document.querySelectorAll('.dropdown-trigger');
-        M.Dropdown.init(elems1, {
-            coverTrigger:false,
-            constrainWidth: false
-        });
+        M.AutoInit()
+        var elems = document.getElementById('modalLogin')
+        M.Modal.init(elems, {})
+        
+        InitDropdowns()
         console.log('dropdown inicializado')
         
     },[])
@@ -66,20 +63,7 @@ export function Navbar(){
                     </li>
                     {
                         (Number(usuario.id)!==0 )?(
-                            <React.Fragment>
-                                <li className="Clickeable">
-                                    <Link id="menuUsuario" className='dropdown-trigger' href='#' data-target='dropdown1'>
-                                        {usuario.nombreUsuario}
-                                    </Link>
-                                    <ul id='dropdown1' className='dropdown-content'>
-                                          <li><a href="#!">Perfil</a></li>
-                                          <li><a href="#!">Ajustes</a></li>
-                                          <li><a href="#!">Crear Grupo</a></li>
-                                          <li className="divider" tabindex="-1"></li>
-                                          <li><a onClick={()=>{salirSesion()}} href="#"><i className="material-icons">exit_to_app</i>Cerrar sesión</a></li>
-                                        </ul>
-                                </li>
-                            </React.Fragment>
+                            <li><a class='dropdown-trigger' href='#' data-target='dropdown1' href="javascript:void(0)">{usuario.nombreUsuario}<i class="material-icons right">arrow_drop_down</i></a></li>
                         ):(
                             <li>
                                 <Link onClick={()=>{AbrirModalLogin()}}>Iniciar sesion</Link>
@@ -87,6 +71,15 @@ export function Navbar(){
                             
                         )
                     }
+                          
+                          <ul id='dropdown1' className='dropdown-content'>
+                                <li><a href="#!">Rincón del admin</a></li>
+                                <li><a href="#!">Perfil</a></li>
+                                <li><a href="#!">Ajustes</a></li>
+                                <li><a onClick={()=>{ClickCrearGrupo()}} href="javascript:void(0)">Crear Grupo</a></li>
+                                <li className="divider" tabindex="-1"></li>
+                                <li><a onClick={()=>{salirSesion()}} href="#"><i className="material-icons">exit_to_app</i>Cerrar sesión</a></li>
+                            </ul>
                 </ul>
             </div>
             <Login />
@@ -96,9 +89,24 @@ export function Navbar(){
 }
 
 function AbrirModalLogin(){
-    const M = window.M
     const elem = document.getElementById('modalLogin')
     var instance = M.Modal.getInstance(elem)
     instance.open()
 }
 
+function InitDropdowns(){
+    var elems = document.querySelectorAll('.dropdown-trigger');
+    M.Dropdown.init(elems, {
+        constrainWidth: false,
+        coverTrigger : false
+    });
+    
+}
+const M = window.M
+
+
+function ClickCrearGrupo(){
+    const elem = document.getElementById('modalCrearGrupo')
+    var instance = M.Modal.getInstance(elem)
+    instance.open()
+}
