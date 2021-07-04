@@ -10,6 +10,7 @@ import {useDispatch} from 'react-redux'
 import {IniciarSesion} from '../../redux/redux'
 import {getCookie,GetNombreDefault} from '../Globales/FuncionesGlobales'
 import { useEffect } from 'react';
+import {CrearGrupo} from '../posteos/CrearGrupo'
 
 export function WraperApp(){
     const dispatch = useDispatch()
@@ -42,7 +43,7 @@ export function WraperApp(){
               }
               <Route path='/Comentarios' component={Comentarios} />
               <Route path='/Inicio' component={MainUsuario} />
-
+              <CrearGrupo />
             </Router>
         </div>
     )

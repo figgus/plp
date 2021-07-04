@@ -1,5 +1,5 @@
 import { useEffect } from "react"
-import {CrearGrupo} from '../posteos/CrearGrupo'
+
 
 export function MainUsuario(){
     const M = window.M
@@ -8,6 +8,5 @@ export function MainUsuario(){
     },[])
     return (<div className="container">
         Main usuario
-        <CrearGrupo />
     </div>)
 }
