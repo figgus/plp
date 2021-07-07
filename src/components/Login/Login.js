@@ -30,7 +30,9 @@ export function Login(){
                 icon: "error"
             })
         });
-
+        if(!respuesta){
+            return
+        }
         if (respuesta.ok) {
             const user = await respuesta.json()
             registrarLogin(user)
@@ -38,10 +40,12 @@ export function Login(){
             if(isRecordar){
                 setCookie('nombreUsuario',user.nombreUsuario)
                 setCookie('idUsuario',user.id)
+
+                document.getElementById('btnDropdown').innerHTML = user.nombreUsuario
             }
             
 
-            history.push('/panelControl')
+            history.push('/')
             CerrarSesion()
         }
     }
@@ -63,7 +67,7 @@ export function Login(){
                                     <h5 style={{color:'black'}}>Ingrese datos</h5>
                             
                                     <input placeholder="Nombre de usuario" id="nombreUsuario" type="text" className="validate"/>
-                                        
+
                                     <input placeholder="Contraseña" id="password" type="password" className="validate"/>
                                         
                                     <p>

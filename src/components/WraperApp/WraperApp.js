@@ -25,6 +25,7 @@ export function WraperApp(){
         }
         const registrarLogin = (user) => dispatch(IniciarSesion(user))
         registrarLogin(user)
+        document.getElementById('btnDropdown').innerHTML = user.nombreUsuario
       }
     },[])
     

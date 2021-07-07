@@ -1,13 +1,13 @@
 import {createStore} from 'redux';
 
 const initialState=
-        {
-            usuario:{
-                id:0,
-                nombreUsuario:'no logeado'
-            },
-            
-        }
+    {
+        usuario:{
+            id:0,
+            nombreUsuario:'no logeado'
+        },
+        gruposDelUsuario:[]
+    }
 
 
 export const store=createStore(
@@ -29,6 +29,11 @@ function reducer(state,{type,payload}){
             }
         }
         
+        case 'UPDATE_GRUPOS_USER':return {
+            ...state,
+            gruposDelUsuario:payload
+        }
+
         default:
             return state; 
     }
@@ -45,5 +50,12 @@ export const CerrarSesion=()=>(
     {
         type:'CIERRA_SESION',
         payload:null
+    }
+)
+
+export const ActualizarGruposUsuarios=(grupos)=>(
+    {
+        type:'UPDATE_GRUPOS_USER',
+        payload:grupos
     }
 )

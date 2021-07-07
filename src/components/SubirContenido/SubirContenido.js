@@ -29,7 +29,8 @@ async function Enviar(){
             'Content-Type': 'application/json'
         },
         method: 'post',
-        body:JSON.stringify(data)
+        body:JSON.stringify(data),
+        credentials: 'include'
     }).catch((err)=>{
         console.log(err);
         alert('error')

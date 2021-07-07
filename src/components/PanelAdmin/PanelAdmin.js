@@ -99,7 +99,8 @@ export async function Aprovar(id){
                     headers:{
                         'Content-Type': 'application/json'
                     },
-                    method: 'put'
+                    method: 'put',
+                    credentials: 'include'
                   }).catch((err)=>{
                       swal({
                           title: "Error al aprobar" ,

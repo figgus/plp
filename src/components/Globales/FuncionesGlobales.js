@@ -1,6 +1,6 @@
 
 export function GetUrlApi(){
-    return 'https://localhost:44374'
+    return process.env.REACT_APP_URL_API
 }
 
 export function getCookie(cname) {
@@ -29,4 +29,25 @@ export function setCookie(cname, cvalue, exdays) {
 
 export function GetNombreDefault(){
   return 'no logeado'
+}
+
+export async function TraerGruposUsuario(id){
+  var respuesta = await fetch(GetUrlApi()+'/api/Usuarios/GetGruposUsuario?id='+id, {
+      headers:{
+          'Content-Type': 'application/json'
+      },
+      method: 'get',
+      credentials: 'include'
+  }).catch((err)=>{
+      return -1
+  });
+  if(!respuesta){
+      
+      return -1
+  }
+  if (respuesta.ok) {
+      const res = await respuesta.json()
+      return res
+  }
+
 }

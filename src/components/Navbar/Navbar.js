@@ -17,10 +17,9 @@ export function Navbar(){
 
     const salirSesion = async()=>{
         salir()
-        //localStorage.removeItem('nombreUsuario')
         document.cookie = "nombreUsuario = John Doe; expires=Thu, 18 Dec 2013 12:00:00 UTC"; 
         document.cookie = "idUsuario = John Doe; expires=Thu, 18 Dec 2013 12:00:00 UTC"; 
-
+        document.getElementById('btnDropdown').innerHTML = ''
         await fetch(GetUrlApi()+'/api/usuarios/CerrarSesion', {
             headers:{
                 'Content-Type': 'application/json'
@@ -44,7 +43,6 @@ export function Navbar(){
         M.Modal.init(elems, {})
         
         InitDropdowns()
-        console.log('dropdown inicializado')
         
     },[])
 
@@ -96,22 +94,25 @@ export function Navbar(){
     }
     return (<React.Fragment>
         <ul id="dropdown1" class="dropdown-content">
-            <li><a href="#!">one</a></li>
+            <li><a href="#!">Rincon del admin</a></li>
             <li><a onClick={()=>{CrearGrupo()}} href="javascript:void(0)" href="#!">Crear Grupo</a></li>
+            <li><a href="javascript:void(0)" href="#!">Perfil</a></li>
+            <li><a href="javascript:void(0)" href="#!">Ajustes</a></li>
             <li class="divider"></li>
             <li><a onClick={()=>{salirSesion()}} href="javascript:void(0)">Cerrar sesion</a></li>
         </ul>
         <nav>
           <div class="nav-wrapper">
-            <a href="#!" class="brand-logo">Logo</a>
+            <a href="#!" class="brand-logo">Logo {usuario.nombreUsuario}</a>
             <ul class="right hide-on-med-and-down">
               <li><a href="sass.html">Sass</a></li>
               <li><a href="badges.html">Components</a></li>
-              <li><a class="dropdown-trigger" href="#!" data-target="dropdown1">Dropdown<i class="material-icons right">arrow_drop_down</i></a></li>
+              <li> <Link onClick={()=>{AbrirModalLogin()}}>Iniciar sesion</Link> </li>
+              <li><a id="btnDropdown" className="dropdown-trigger" href="#!" data-target="dropdown1">-<i class="material-icons right">arrow_drop_down</i></a></li>
             </ul>
           </div>
         </nav>
-        
+        <Login />
     </React.Fragment>)
 }
 
@@ -130,11 +131,3 @@ function InitDropdowns(){
     
 }
 const M = window.M
-
-
-//function ClickCrearGrupo(){
-//    debugger
-//    const elem = document.getElementById('modalCrearGrupo')
-//    var instance = M.Modal.getInstance(elem)
-//    instance.open()
-//}

@@ -19,8 +19,11 @@ export function CrearGrupo(){
                 title: "Error al traer visibilidades" ,
                 icon: "error"
             })
+            return
         });
 
+        if(!respuesta)
+            return
         if (respuesta.ok) {
             const res =await respuesta.json()
             setTiposVisibilidad(res) 
@@ -55,8 +58,12 @@ export function CrearGrupo(){
               title: "Error al traer visibilidades" ,
               icon: "error"
           })
+          return
       });
       
+      if(!respuesta){
+        return
+      }
       if (respuesta.ok) {
           swal({
             title: "Grupo creado" ,
