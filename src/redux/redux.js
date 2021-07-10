@@ -6,7 +6,8 @@ const initialState=
             id:0,
             nombreUsuario:'no logeado'
         },
-        gruposDelUsuario:[]
+        gruposDelUsuario:[],
+        parametros : {}
     }
 
 
@@ -34,6 +35,11 @@ function reducer(state,{type,payload}){
             gruposDelUsuario:payload
         }
 
+        case 'UPDATE_PARAMETERS':return {
+            ...state,
+            parametros:payload
+        }
+
         default:
             return state; 
     }
@@ -57,5 +63,12 @@ export const ActualizarGruposUsuarios=(grupos)=>(
     {
         type:'UPDATE_GRUPOS_USER',
         payload:grupos
+    }
+)
+
+export const ActualizarParametros=(parametros)=>(
+    {
+        type:'UPDATE_PARAMETERS',
+        payload:parametros
     }
 )

@@ -27,7 +27,6 @@ export function CrearGrupo(){
         if (respuesta.ok) {
             const res =await respuesta.json()
             setTiposVisibilidad(res) 
-            console.log(TiposVisibilidad)
         }
     },[])
 

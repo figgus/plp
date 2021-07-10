@@ -22,8 +22,6 @@ async function Enviar(){
     data.titulo = document.getElementById("titulo").value
     data.descripcion = document.getElementById("descripcion").value
 
-    console.log(JSON.stringify(data))
-    console.log(process.env.urlApi)
     var respuesta = await fetch(GetUrlApi()+'/api/Contenidos', {
         headers:{
             'Content-Type': 'application/json'
@@ -32,7 +30,6 @@ async function Enviar(){
         body:JSON.stringify(data),
         credentials: 'include'
     }).catch((err)=>{
-        console.log(err);
         alert('error')
         //swal({
         //    title: "Error al guardar el cierre" ,
@@ -71,7 +68,6 @@ async function EnviarImagen(idContenidoAsociado){
         method: 'post',
         body:contenido2
     }).catch((err)=>{
-        console.log(err);
         alert('error')
         //swal({
         //    title: "Error al guardar el cierre" ,

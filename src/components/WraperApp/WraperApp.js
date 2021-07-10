@@ -11,6 +11,9 @@ import {IniciarSesion} from '../../redux/redux'
 import {getCookie,GetNombreDefault} from '../Globales/FuncionesGlobales'
 import { useEffect } from 'react';
 import {CrearGrupo} from '../posteos/CrearGrupo'
+import {  Post} from "../posteos/Post/Post";
+import { MainGrupo } from "../posteos/MainGrupo/MainGrupo";
+import { CrearPost } from "../posteos/MainGrupo/CrearPost";
 
 export function WraperApp(){
     const dispatch = useDispatch()
@@ -44,6 +47,8 @@ export function WraperApp(){
               }
               <Route path='/Comentarios' component={Comentarios} />
               <Route path='/Inicio' component={MainUsuario} />
+              <Route path='/MainGrupo' component={MainGrupo} />
+              <Route path='/CrearPost' component={CrearPost} />
               <CrearGrupo />
             </Router>
         </div>

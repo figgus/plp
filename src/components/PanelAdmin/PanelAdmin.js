@@ -29,7 +29,6 @@ export function PanelAdmin(){
             method: 'get',
             credentials: 'include'
           }).catch((err)=>{
-              console.log(err);
               alert('error')
               //swal({
               //    title: "Error al guardar el cierre" ,

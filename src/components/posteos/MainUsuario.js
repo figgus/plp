@@ -1,15 +1,18 @@
 import { useEffect, useState } from "react"
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import swal from "sweetalert";
 import { GetUrlApi,TraerGruposUsuario,getCookie } from "../Globales/FuncionesGlobales";
 import {GruposRecomendados} from './GruposRecomendados/GruposRecomendados'
 import { TusGrupos } from "./TusGrupos";
+import {PostRecomendados} from './PostRecomendados/PostRecomendados'
+import {ActualizarGruposUsuarios} from '../../redux/redux'
 
 export function MainUsuario(){
     
     const M = window.M
     const [gruposUser,setGruposUser] = useState([]);
     const usuario = useSelector((state) => state.usuario);
+    const dispatch = useDispatch()
 
     useEffect(async()=>{
         
@@ -18,8 +21,12 @@ export function MainUsuario(){
         const id = getCookie('idUsuario')
         if(id){
             const gruposUser = await TraerGruposUsuario(id)
-            console.log(gruposUser)
-            await setGruposUser(gruposUser)
+            setGruposUser(gruposUser)
+
+            const updateGrupoUser = (gruposUser) => dispatch(ActualizarGruposUsuarios(gruposUser))
+            updateGrupoUser(gruposUser)
+
+            
         }
         M.Carousel.init(elems, {})
     },[])
@@ -28,14 +35,12 @@ export function MainUsuario(){
     return (<div className="container">
         {
             (gruposUser.length>1)?(
-            <div class="carousel">
-                {
-                    gruposUser.map((item)=>{
-                        return (<a class="carousel-item" href="#one!">
-                            {item.nombre}
-                            <img src="https://localhost:44374/api/contenidos/getImage?nombreImagen=C:\Users\joaquin\Pictures\imagenesPlp\1 - 6_7_2021.jpg"/></a>)
-                    })
-                }
+            <div className="carousel">
+                <a className="carousel-item" href="#one!"> <img src="https://localhost:44374/api/contenidos/getImage?nombreImagen=C:\Users\joaquin\Pictures\imagenesPlp\1 - 6_7_2021.jpg"/></a>
+                <a className="carousel-item" href="#one!"> <img src="https://localhost:44374/api/contenidos/getImage?nombreImagen=C:\Users\joaquin\Pictures\imagenesPlp\1 - 6_7_2021.jpg"/></a>
+                <a className="carousel-item" href="#one!"> <img src="https://localhost:44374/api/contenidos/getImage?nombreImagen=C:\Users\joaquin\Pictures\imagenesPlp\1 - 6_7_2021.jpg"/></a>
+                <a className="carousel-item" href="#one!"> <img src="https://localhost:44374/api/contenidos/getImage?nombreImagen=C:\Users\joaquin\Pictures\imagenesPlp\1 - 6_7_2021.jpg"/></a>
+
             </div>):(null)
         }
         
@@ -47,8 +52,9 @@ export function MainUsuario(){
         <div class="row">
             <div class="col s12">
               <ul class="tabs">
-                <li class="tab col s6"><a href="#test1">Tus Grupos</a></li>
-                <li class="tab col s6"><a class="active" href="#test2">Grupos recomendados</a></li>
+                <li class="tab col s4"><a class="active" href="#postRecomendados">Post recomendados</a></li>
+                <li class="tab col s4"><a href="#test1">Tus Grupos</a></li>
+                <li class="tab col s4"><a class="active" href="#test2">Grupos recomendados</a></li>
               </ul>
             </div>
             <div id="test1" class="col s12">
@@ -56,6 +62,9 @@ export function MainUsuario(){
             </div>
             <div id="test2" class="col s12">
                 <GruposRecomendados />
+            </div>
+            <div id="postRecomendados" class="col s12">
+                <PostRecomendados />
             </div>
         </div>
     </div>)
