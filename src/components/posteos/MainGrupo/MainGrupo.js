@@ -20,7 +20,7 @@ export function MainGrupo(){
             <a onClick={()=>{redirigir.push('/CrearPost')}} className="waves-effect waves-light btn-large"><i class="material-icons left">add</i>Crear publicacion</a>
         </center>
         
-        <ul class="collection">
+        <ul className="collection">
           
           {
               posts.map((item,i)=>{
@@ -29,7 +29,7 @@ export function MainGrupo(){
                         <h5>
                             {item.titulo}
                         </h5>
-                        
+                        publicado hace {item.horasDesdeCreacion} horas
                         <br/>
                         {item.texto}
                     </li>
