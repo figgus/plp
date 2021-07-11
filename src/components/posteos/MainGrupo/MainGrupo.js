@@ -15,6 +15,9 @@ export function MainGrupo(){
 
 
     return (<div className="container">
+        <h4>
+             {parametros.grupo.nombre}
+        </h4>
         <center>
             <br/>
             <a onClick={()=>{redirigir.push('/CrearPost')}} className="waves-effect waves-light btn-large"><i class="material-icons left">add</i>Crear publicacion</a>
@@ -23,23 +26,23 @@ export function MainGrupo(){
         <ul className="collection">
           
           {
-              posts.map((item,i)=>{
-                  return (
-                    <li className="collection-item">
-                        <h5>
-                            {item.titulo}
-                        </h5>
-                        publicado hace {item.horasDesdeCreacion} horas
-                        <br/>
-                        {item.texto}
-                    </li>
-                  )
-              })
+              (posts)?(
+                posts.map((item,i)=>{
+                    return (
+                      <li className="collection-item">
+                          <h5>
+                              {item.titulo}
+                          </h5>
+                          publicado hace {item.horasDesdeCreacion} horas
+                          <br/>
+                          {item.texto}
+                      </li>
+                    )
+                })
+              ):(null)
+              
           }
         </ul>
-            
-
-        aaselecciono el id {parametros.grupo.id}
     </div>)
 }
 
@@ -69,3 +72,4 @@ async function TraerPostAsociados(idGrupo){
         return res
       }
 }
+

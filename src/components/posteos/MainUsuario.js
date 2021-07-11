@@ -25,8 +25,6 @@ export function MainUsuario(){
 
             const updateGrupoUser = (gruposUser) => dispatch(ActualizarGruposUsuarios(gruposUser))
             updateGrupoUser(gruposUser)
-
-            
         }
         M.Carousel.init(elems, {})
     },[])
@@ -49,21 +47,21 @@ export function MainUsuario(){
             
         
 
-        <div class="row">
-            <div class="col s12">
-              <ul class="tabs">
-                <li class="tab col s4"><a class="active" href="#postRecomendados">Post recomendados</a></li>
-                <li class="tab col s4"><a href="#test1">Tus Grupos</a></li>
-                <li class="tab col s4"><a class="active" href="#test2">Grupos recomendados</a></li>
+        <div className="row">
+            <div className="col s12">
+              <ul className="tabs">
+                <li className="tab col s4"><a className="active" href="#postRecomendados">Post recomendados</a></li>
+                <li className="tab col s4"><a href="#test1">Tus Grupos</a></li>
+                <li className="tab col s4"><a className="active" href="#test2">Grupos recomendados</a></li>
               </ul>
             </div>
-            <div id="test1" class="col s12">
+            <div id="test1" className="col s12">
                 <TusGrupos />
             </div>
-            <div id="test2" class="col s12">
+            <div id="test2" className="col s12">
                 <GruposRecomendados />
             </div>
-            <div id="postRecomendados" class="col s12">
+            <div id="postRecomendados" className="col s12">
                 <PostRecomendados />
             </div>
         </div>

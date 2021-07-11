@@ -10,7 +10,6 @@ export function TusGrupos(){
     const ClickGrupo =async (grupo)=>{
         
         const updateParams = (parametros) => dispatch(ActualizarParametros(parametros))
-        debugger
         await updateParams({
             grupo : grupo.grupo
 

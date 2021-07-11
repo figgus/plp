@@ -21,6 +21,7 @@ export function WraperApp(){
     const nombreDeUsuario = getCookie('nombreUsuario')
 
     useEffect(()=>{
+      
       if(nombreDeUsuario !== GetNombreDefault()){
         const user = {
           id:getCookie('idUsuario'),
@@ -28,6 +29,8 @@ export function WraperApp(){
         }
         const registrarLogin = (user) => dispatch(IniciarSesion(user))
         registrarLogin(user)
+        console.log('usuario registrado')
+        console.log(user)
         document.getElementById('btnDropdown').innerHTML = user.nombreUsuario
       }
     },[])
