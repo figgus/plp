@@ -22,18 +22,30 @@ export function TusGrupos(){
             (gruposDelUsuario.length===0)?(<p>No se encontraron grupos</p>):(
                 gruposDelUsuario.map((item,i)=>{
                     return (
-                        <ul className="collection">
-                            <li onClick={()=>{ClickGrupo(item)}} style={{cursor:'pointer'}} className="collection-item avatar">
-                              <i className="material-icons circle red">play_arrow</i>
-                              <span className="title">{item.grupo.nombre}</span>
-                              <p>asda <br/>
-                                 Second Line
-                              </p>
-                              <a className="btn-floating btn-large waves-effect waves-light red secondary-content"><i className="material-icons">remove</i></a>
-                            </li>
-                        </ul>)
+                        <div onClick={()=>{ClickGrupo(item)}} className="col s12 m7 Clickeable">
+                            <div className="card horizontal">
+                              <div className="card-image">
+                                <img src="https://lorempixel.com/100/190/nature/6"/>
+                              </div>
+                              <div className="card-stacked">
+                                <div className="card-content">
+                                  <h5>{item.grupo.nombre}</h5>
+                                  <p>
+                                    Descripcion
+                                  </p>
+                                  
+                                </div>
+                                <div className="card-action">
+                                  <a href="javascript:void(0)">  <i className="material-icons">add</i> Abandonar </a>
+                                </div>
+                              </div>
+                            </div>
+                        </div>)
                 })
             )
         }
+
+                        
+
     </div>)
 }
