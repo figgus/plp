@@ -40,3 +40,21 @@
 .Clickeable {
   cursor: pointer;
 }
+
+.tabs .tab a{
+  color:#25a35b;
+} /*Black color to the text*/
+
+.tabs .tab a:hover {
+  background-color:#eee;
+  color:#25a35b;
+} /*Text color on hover*/
+
+.tabs .tab a.active {
+  background-color:#eee;
+  color:#25a35b;
+} /*Background and text color when a tab is active*/
+
+.tabs .indicator {
+  background-color:#25a35b;
+} /*Color of underline*/

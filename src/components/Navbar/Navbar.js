@@ -13,7 +13,7 @@ export function Navbar(){
     const usuario = useSelector((state) => state.usuario);
 
     const dispatch = useDispatch();
-    const salir = (user) => dispatch(CerrarSesion())
+    const salir = () => dispatch(CerrarSesion())
 
     const salirSesion = async()=>{
         salir()
@@ -28,10 +28,6 @@ export function Navbar(){
             credentials: 'include',
           }).catch((err)=>{
               alert('error')
-              //swal({
-              //    title: "Error al guardar el cierre" ,
-              //    icon: "error"
-              //})
         })
         history.push('/')
     }
@@ -46,52 +42,12 @@ export function Navbar(){
         
     },[])
 
-
-    //return (
-    //    <nav>
-    //        <div style={{ backgroundColor: '#25a35b' }} className="nav-wrapper">
-    //            <Link className="brand-logo left" to="/"> Plp </Link>
-    //            <ul id="nav-mobile" className="right hide-on-med-and-down">
-    //                
-    //                <li>
-    //                    <Link to="/subirContenido"> Subir contenido </Link>
-    //                </li>
-    //                <li>
-    //                    <Link to="/Inicio"> Posteorama </Link>
-    //                </li>
-    //                {
-    //                    (Number(usuario.id)!==0 )?(
-    //                        <li><a className='dropdown-trigger' href='#' data-target='dropdown1' href="#">{usuario.nombreUsuario}<i class="material-icons right">arrow_drop_down</i></a></li>
-    //                    ):(
-    //                        <li>
-    //                            <Link onClick={()=>{AbrirModalLogin()}}>Iniciar sesion</Link>
-    //                        </li>
-    //                        
-    //                    )
-    //                }
-    //                      <li>
-    //                            <ul id='dropdown1' className='dropdown-content browser-default'>
-    //                                  <li><a href="#!">Rincón del admin</a></li>
-    //                                  <li><a href="#!">Perfil</a></li>
-    //                                  <li><a href="#!">Ajustes</a></li>
-    //                                  <li><a onClick={()=>{ClickCrearGrupo()}} href="javascript:void(0)">Crear Grupo</a></li>
-    //                                  <li className="divider" tabindex="-1"></li>
-    //                                  <li><a onClick={()=>{salirSesion()}} href="#"><i className="material-icons">exit_to_app</i>Cerrar sesión</a></li>
-    //                              </ul>
-    //                            </li>
-    //                      
-    //            </ul>
-    //        </div>
-    //        <Login />
-    //    </nav>
-    //  
-    //)
-
     const CrearGrupo = ()=>{
         const elem = document.getElementById('modalCrearGrupo')
         var instance = M.Modal.getInstance(elem)
         instance.open()
     }
+    
     return (<React.Fragment>
         <ul id="dropdown1" class="dropdown-content">
             <li><a href="#!">Rincon del admin</a></li>
@@ -101,12 +57,10 @@ export function Navbar(){
             <li class="divider"></li>
             <li><a onClick={()=>{salirSesion()}} href="javascript:void(0)">Cerrar sesion</a></li>
         </ul>
-        <nav>
+        <nav style={{ backgroundColor: '#25a35b' }}>
           <div class="nav-wrapper">
-            <a href="#!" class="brand-logo">Logo</a>
+            <img style={{'maxHeight':'100%','maxWidth':'100%'}} src={require('../../imagenes/LogoOlimpos.png').default}/>
             <ul class="right hide-on-med-and-down">
-              <li><a href="sass.html">Sass</a></li>
-              <li><a href="badges.html">Components</a></li>
               <li> <Link onClick={()=>{AbrirModalLogin()}}>Iniciar sesion</Link> </li>
               <li><a id="btnDropdown" className="dropdown-trigger" href="#!" data-target="dropdown1">-<i class="material-icons right">arrow_drop_down</i></a></li>
             </ul>
