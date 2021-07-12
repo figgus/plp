@@ -7,9 +7,11 @@ import { TusGrupos } from "./TusGrupos";
 import {PostRecomendados} from './PostRecomendados/PostRecomendados'
 import {ActualizarGruposUsuarios} from '../../redux/redux'
 
+const M = window.M
+
 export function MainUsuario(){
     
-    const M = window.M
+    
     const [gruposUser,setGruposUser] = useState([]);
     const usuario = useSelector((state) => state.usuario);
     const dispatch = useDispatch()
@@ -27,6 +29,7 @@ export function MainUsuario(){
             updateGrupoUser(gruposUser)
         }
         M.Carousel.init(elems, {})
+        InitTabs()
     },[])
 
 
@@ -42,13 +45,9 @@ export function MainUsuario(){
             </div>):(null)
         }
         
-            
-            
-            
-        
 
         <div className="row">
-            <div className="col s12">
+            <div className="col s12 ">
               <ul className="tabs">
                 <li className="tab col s4"><a className="active" href="#postRecomendados">Post recomendados</a></li>
                 <li className="tab col s4"><a href="#test1">Tus Grupos</a></li>
@@ -70,3 +69,8 @@ export function MainUsuario(){
 
 
 
+function InitTabs(){
+    var elems = document.querySelectorAll('.tabs');
+    var instance = M.Tabs.init(elems, {});
+
+}

@@ -34,7 +34,7 @@ export function Navbar(){
 
     useEffect(()=>{
         const M = window.M
-        M.AutoInit()
+        //M.AutoInit()
         var elems = document.getElementById('modalLogin')
         M.Modal.init(elems, {})
         
@@ -55,14 +55,18 @@ export function Navbar(){
             <li><a href="javascript:void(0)" href="#!">Perfil</a></li>
             <li><a href="javascript:void(0)" href="#!">Ajustes</a></li>
             <li class="divider"></li>
-            <li><a onClick={()=>{salirSesion()}} href="javascript:void(0)">Cerrar sesion</a></li>
+            <li>
+                <a onClick={()=>{salirSesion()}} href="javascript:void(0)">Cerrar sesion</a>
+            </li>
         </ul>
         <nav style={{ backgroundColor: '#25a35b' }}>
           <div class="nav-wrapper">
             <img style={{'maxHeight':'100%','maxWidth':'100%'}} src={require('../../imagenes/LogoOlimpos.png').default}/>
             <ul class="right hide-on-med-and-down">
               <li> <Link onClick={()=>{AbrirModalLogin()}}>Iniciar sesion</Link> </li>
-              <li><a id="btnDropdown" className="dropdown-trigger" href="#!" data-target="dropdown1">-<i class="material-icons right">arrow_drop_down</i></a></li>
+              <li><a id="btnDropdown" className="dropdown-trigger" href="#!" data-target="dropdown1">
+                <i class="material-icons">person</i>
+                  -<i class="material-icons right">arrow_drop_down</i></a></li>
             </ul>
           </div>
         </nav>

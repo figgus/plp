@@ -58,3 +58,7 @@
 .tabs .indicator {
   background-color:#25a35b;
 } /*Color of underline*/
+
+.FullWidth {
+  width: 100%;
+}
