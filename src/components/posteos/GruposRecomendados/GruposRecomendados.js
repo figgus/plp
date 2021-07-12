@@ -81,19 +81,31 @@ export function GruposRecomendados(){
             (gruposRecomendados.length===0)?(<p>No se encontraron grupos</p>):(
                 gruposRecomendados.map((item,i)=>{
                     return (
-                        <ul className="collection">
-                            <li className="collection-item avatar">
-                              <i className="material-icons circle red">play_arrow</i>
-                              <span className="title">{item.nombre}</span>
-                              <p>asda <br/>
-                                 Second Line
-                              </p>
-                              <a onClick={()=>{Unirse(item.id)}} className="btn-floating btn-large waves-effect waves-light red secondary-content"><i class="material-icons">add</i></a>
-                            </li>
-                        </ul>)
+                        <div className="col s12 m7 Clickeable">
+                            <div className="card horizontal">
+                              <div className="card-image">
+                                <img src="https://lorempixel.com/100/190/nature/6"/>
+                              </div>
+                              <div className="card-stacked">
+                                <div className="card-content">
+                                  <h5>{item.nombre}</h5>
+                                  <p>
+                                    Descripcion
+                                  </p>
+                                  
+                                </div>
+                                <div className="card-action">
+                                  <a  onClick={()=>{Unirse(item.id)}} href="javascript:void(0)">  <i className="material-icons">add</i> Unirse </a>
+                                </div>
+                              </div>
+                            </div>
+                        </div>
+                        )
                 })
             )
         }
+
+                        
     </div>)
 }
 

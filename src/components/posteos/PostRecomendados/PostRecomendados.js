@@ -47,7 +47,7 @@ export function PostRecomendados(){
                                 </div>
                               </div>
                             </div>
-                            </div>
+                        </div>
                         )
                     })
               ):(<p>posts nulo</p>)
