@@ -20,7 +20,7 @@ export function MainGrupo(){
         </h4>
         <center>
             <br/>
-            <a onClick={()=>{redirigir.push('/CrearPost')}} className="waves-effect waves-light btn-large"><i class="material-icons left">add</i>Crear publicacion</a>
+            <a onClick={()=>{redirigir.push('/CrearPost')}} className="waves-effect waves-light btn-large"><i className="material-icons left">add</i>Crear publicacion</a>
         </center>
         
         <ul className="collection">

@@ -17,21 +17,21 @@ export function CrearPost(){
         <h4>
             Publicando en {ConditionalRender(grupoSeleccionado)}
         </h4>
-        <div class="row">
-            <div class="col s12">
-              <ul id="tabs" class="tabs">
-                <li class="tab col s3"><a className="active" href="#test1">Texto</a></li>
-                <li class="tab col s3"><a href="#test2">Multimedia</a></li>
-                <li class="tab col s3"><a href="#test3">Link</a></li>
-                <li class="tab col s3 disabled"><a href="#test4">Encuesta</a></li>
+        <div className="row">
+            <div className="col s12">
+              <ul id="tabs" className="tabs">
+                <li className="tab col s3"><a className="active" href="#test1">Texto</a></li>
+                <li className="tab col s3"><a href="#test2">Multimedia</a></li>
+                <li className="tab col s3"><a href="#test3">Link</a></li>
+                <li className="tab col s3 disabled"><a href="#test4">Encuesta</a></li>
               </ul>
             </div>
-            <div id="test1" class="col s12">
+            <div id="test1" className="col s12">
                 <CrearPostTexto />
             </div>
-            <div id="test2" class="col s12">Test 2</div>
-            <div id="test3" class="col s12">Test 3</div>
-            <div id="test4" class="col s12">Test 4</div>
+            <div id="test2" className="col s12">Test 2</div>
+            <div id="test3" className="col s12">Test 3</div>
+            <div id="test4" className="col s12">Test 4</div>
         </div>
     </div>)
 }

@@ -63,7 +63,7 @@ export function CrearPostTexto(){
             </div>
 
             <br/>
-            <a onClick={()=>{CrearPost()}} style={{float: 'right'}} className="waves-effect waves-light btn"><i class="material-icons right">publish</i>Publicar</a>
+            <a onClick={()=>{CrearPost()}} style={{float: 'right'}} className="waves-effect waves-light btn"><i className="material-icons right">publish</i>Publicar</a>
         </div>
         <div className="col s2"></div>
         

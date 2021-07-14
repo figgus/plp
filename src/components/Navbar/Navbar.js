@@ -6,6 +6,7 @@ import {useHistory} from 'react-router-dom'
 import {Login} from '../Login/Login'
 import {GetUrlApi} from '../Globales/FuncionesGlobales'
 
+const M = window.M
 
 
 export function Navbar(){
@@ -29,12 +30,10 @@ export function Navbar(){
           }).catch((err)=>{
               alert('error')
         })
-        history.push('/')
+        history.push('/rinconDelAdmin')
     }
 
     useEffect(()=>{
-        const M = window.M
-        //M.AutoInit()
         var elems = document.getElementById('modalLogin')
         M.Modal.init(elems, {})
         
@@ -49,24 +48,36 @@ export function Navbar(){
     }
     
     return (<React.Fragment>
-        <ul id="dropdown1" class="dropdown-content">
+        
+        <ul id="dropdown1" className="dropdown-content">
             <li><a href="#!">Rincon del admin</a></li>
             <li><a onClick={()=>{CrearGrupo()}} href="javascript:void(0)" href="#!">Crear Grupo</a></li>
             <li><a href="javascript:void(0)" href="#!">Perfil</a></li>
             <li><a href="javascript:void(0)" href="#!">Ajustes</a></li>
-            <li class="divider"></li>
+            <li className="divider"></li>
             <li>
                 <a onClick={()=>{salirSesion()}} href="javascript:void(0)">Cerrar sesion</a>
             </li>
         </ul>
         <nav style={{ backgroundColor: '#25a35b' }}>
-          <div class="nav-wrapper">
+          <div className="nav-wrapper">
             <img style={{'maxHeight':'100%','maxWidth':'100%'}} src={require('../../imagenes/LogoOlimpos.png').default}/>
-            <ul class="right hide-on-med-and-down">
-              <li> <Link onClick={()=>{AbrirModalLogin()}}>Iniciar sesion</Link> </li>
-              <li><a id="btnDropdown" className="dropdown-trigger" href="#!" data-target="dropdown1">
-                <i class="material-icons">person</i>
-                  -<i class="material-icons right">arrow_drop_down</i></a></li>
+            <ul className="right hide-on-med-and-down">
+                {
+                    (usuario.id === 0 || !usuario.id)
+                    ?(
+                        <li><Link onClick={()=>{AbrirModalLogin()}}>Iniciar sesion</Link> </li>
+                    ):(
+                        <li>
+                            <a id="btnDropdown" className="dropdown-trigger" href="#!" data-target="dropdown1">
+                            {usuario.nombreUsuario}
+                            <i className="material-icons right">arrow_drop_down</i>
+                            </a>
+                        </li>
+                    )
+                }
+              
+              
             </ul>
           </div>
         </nav>
@@ -88,4 +99,4 @@ function InitDropdowns(){
     });
     
 }
-const M = window.M
+

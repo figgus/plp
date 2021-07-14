@@ -38,7 +38,7 @@ export function GaleriaImagenes(){
 
   return (
       <div  className="container">
-        <div class="row">
+        <div className="row">
           {
             imagenes.map((item,index)=>{
               return (

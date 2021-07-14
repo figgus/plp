@@ -82,7 +82,7 @@ export function CrearGrupo(){
                   <hr/>
                   <p>Nombre</p>
                   <label>Este no podra cambiarse luego</label>
-                  <input placeholder="Nombre" id="nombreGrupo" type="text" class="validate"/>
+                  <input placeholder="Nombre" id="nombreGrupo" type="text" className="validate"/>
                   <br/>
                   <p>Tipo de grupo</p>
                   <form action="#">

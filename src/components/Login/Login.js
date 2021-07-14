@@ -44,7 +44,7 @@ export function Login(){
                 document.getElementById('btnDropdown').innerHTML = user.nombreUsuario
             }
             
-
+            CerrarModalLogin()
             history.push('/')
             CerrarSesion()
         }
@@ -57,7 +57,7 @@ export function Login(){
     return (
         <div >
             <div className="modal" id="modalLogin">
-                <div class="modal-content"> 
+                <div className="modal-content"> 
                     <div className="row">
                         <div className="col s4"></div>
                         <div className="col s4">
@@ -92,4 +92,13 @@ export function Login(){
             </div>
         </div>
     )
+}
+
+
+function CerrarModalLogin(){
+    const M = window.M
+    const elem = document.getElementById('modalLogin')
+    var instance = M.Modal.getInstance(elem)
+    instance.close()
+
 }
