@@ -15,6 +15,7 @@ import {  Post} from "../posteos/Post/Post";
 import { MainGrupo } from "../posteos/MainGrupo/MainGrupo";
 import { CrearPost } from "../posteos/MainGrupo/CrearPost";
 import React from 'react';
+import {Perfil} from '../Perfil/Perfil'
 
 export function WraperApp(){
     const dispatch = useDispatch()
@@ -48,6 +49,7 @@ export function WraperApp(){
               <Route exact path='/RinconDelAdmin' component={GaleriaImagenes} />
               <Route path='/subirContenido' component={SubirContenido} />
               <Route path='/Comentarios' component={Comentarios} />
+              <CrearGrupo />
               {
                 (usuario.id===0 || !usuario.id)?(null)
                 :(
@@ -56,7 +58,7 @@ export function WraperApp(){
                         <Route exact path='/' component={MainUsuario} />
                         <Route path='/MainGrupo' component={MainGrupo} />
                         <Route path='/CrearPost' component={CrearPost} />
-                        <CrearGrupo />
+                        <Route path='/Perfil' component={Perfil} />
                     </React.Fragment>
                     
                 )

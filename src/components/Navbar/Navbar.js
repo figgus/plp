@@ -44,7 +44,15 @@ export function Navbar(){
     const CrearGrupo = ()=>{
         const elem = document.getElementById('modalCrearGrupo')
         var instance = M.Modal.getInstance(elem)
+        if(!elem){
+            alert('modal crear grupo no existe')
+            return
+        }
         instance.open()
+    }
+
+    const ClickPerfil = ()=>{
+        history.push('/Perfil')
     }
     
     return (<React.Fragment>
@@ -52,7 +60,7 @@ export function Navbar(){
         <ul id="dropdown1" className="dropdown-content">
             <li><a href="#!">Rincon del admin</a></li>
             <li><a onClick={()=>{CrearGrupo()}} href="javascript:void(0)" href="#!">Crear Grupo</a></li>
-            <li><a href="javascript:void(0)" href="#!">Perfil</a></li>
+            <li><a onClick={()=>{ClickPerfil()}} href="javascript:void(0)" href="#!">Perfil</a></li>
             <li><a href="javascript:void(0)" href="#!">Ajustes</a></li>
             <li className="divider"></li>
             <li>

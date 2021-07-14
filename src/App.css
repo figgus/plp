@@ -62,3 +62,12 @@
 .FullWidth {
   width: 100%;
 }
+
+.negrita {
+  font-weight: bold;
+}
+
+.sinMarginBottomTop {
+  margin-bottom: 0px;
+  margin-top: 0px;
+}
